@@ -37,5 +37,7 @@ namespace erp_psicologia_classes.Domain.Entities
             Cpf = cpf;
             BirthDate = birthDate;
         }
+
+        public Person(){}
     }
 }

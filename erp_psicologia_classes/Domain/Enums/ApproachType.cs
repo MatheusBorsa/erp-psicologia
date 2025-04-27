@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace erp_psicologia_classes.Domain.Entities
+namespace erp_psicologia_classes.Domain.Enums
 {
-    public class Psycologist
+    public enum ApproachType
     {
+        None,
+        PSYCHOANALYSIS,
+        BEHAVIORAL
+
     }
 }
