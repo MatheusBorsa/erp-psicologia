@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\" />
     <Folder Include="Domain\Interfaces\" />
     <Folder Include="Infra\Database\" />
     <Folder Include="Infra\Database\Migrations\" />

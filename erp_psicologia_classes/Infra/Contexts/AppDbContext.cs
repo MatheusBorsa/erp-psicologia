@@ -14,11 +14,14 @@ namespace erp_psicologia_classes.Infra.Contexts
         #region [DBSETS]
         public DbSet<Person> Peoples { get; set; }
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<User> Users { get; set; }
+
         public DbSet<Psychologist> Psychologists { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Configuration> Configurations { get; set; }
+
         #endregion
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
@@ -178,6 +181,31 @@ namespace erp_psicologia_classes.Infra.Contexts
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(500);
+            });
+            #endregion
+            #region [USER]
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.HasOne(e => e.Person)
+                    .WithMany()
+                    .HasForeignKey(e => e.PersonId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(e => e.Role)
+                    .WithMany()
+                    .HasForeignKey(e => e.RoleId)
+                    .OnDelete(DeleteBehavior.SetNull);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
             });
             #endregion
         }
