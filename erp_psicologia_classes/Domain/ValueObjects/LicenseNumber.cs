@@ -9,7 +9,7 @@ namespace erp_psicologia_classes.Domain.ValueObjects
 {
     public class LicenseNumber
     {
-        private string Value;
+        public string Value;
         public LicenseNumber(string value)
         {
             this.Value = value;

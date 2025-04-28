@@ -20,5 +20,8 @@ namespace erp_psicologia_classes.Domain.Entities
             Value = value;
             Description = description;
         }
+        public Configuration()
+        {
+        }
     }
 }

@@ -12,26 +12,25 @@ namespace erp_psicologia_classes.Domain.Entities
         public DateTime Date { get; set; }
         public TimeSpan Start { get; set; }
         public TimeSpan End { get; set; }
+
+        public int PsychologistId { get; set; }
         public Psychologist Psychologist { get; set; }
+
+        public int PatientId { get; set; }
         public Patient Patient { get; set; }
 
-        public Schedule(int id, DateTime date, TimeSpan start, TimeSpan end, Psychologist psychologist, Patient patient)
+        public Schedule()
+        {
+        }
+
+        public Schedule(int id, DateTime date, TimeSpan start, TimeSpan end, int psychologistId, int patientId)
         {
             Id = id;
             Date = date;
             Start = start;
             End = end;
-            Psychologist = psychologist;
-            Patient = patient;
-        }
-
-        public Schedule(DateTime date, TimeSpan start, TimeSpan end, Psychologist psychologist, Patient patient)
-        {
-            Date = date;
-            Start = start;
-            End = end;
-            Psychologist = psychologist;
-            Patient = patient;
+            PsychologistId = psychologistId;
+            PatientId = patientId;
         }
     }
 }
