@@ -95,25 +95,6 @@ namespace erp_psicologia_classes.Infra.Contexts
                       .IsRequired();
             });
             #endregion
-            #region [ROLE]
-            modelBuilder.Entity<Role>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.Name)
-                      .IsRequired()
-                      .HasMaxLength(100);
-
-                entity.Property(e => e.Description)
-                      .HasMaxLength(250);
-
-                entity.Property(e => e.IsAdmin)
-                      .IsRequired();
-
-                entity.Property(e => e.Active)
-                      .IsRequired();
-            });
-            #endregion
             #region [SCHEDULE]
             modelBuilder.Entity<Schedule>(entity =>
             {
@@ -183,29 +164,35 @@ namespace erp_psicologia_classes.Infra.Contexts
                     .HasMaxLength(500);
             });
             #endregion
-            #region [USER]
-            modelBuilder.Entity<User>(entity =>
+            #region [PAYMENT]
+            modelBuilder.Entity<Payment>(entity =>
             {
-                entity.HasKey(e => e.Id);
+                modelBuilder.Entity<Payment>(entity =>
+                {
+                    entity.HasKey(e => e.Id);
 
-                entity.HasOne(e => e.Person)
-                    .WithMany()
-                    .HasForeignKey(e => e.PersonId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    entity.Property(e => e.Value)
+                          .IsRequired()
+                          .HasColumnType("decimal(10,2)");
 
-                entity.HasOne(e => e.Role)
-                    .WithMany()
-                    .HasForeignKey(e => e.RoleId)
-                    .OnDelete(DeleteBehavior.SetNull);
+                    entity.Property(e => e.Amount_Paid)
+                          .IsRequired()
+                          .HasColumnType("decimal(10,2)");
 
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(255);
+                    entity.Property(e => e.Date)
+                          .IsRequired();
 
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(255);
+                    entity.Property(e => e.Paid)
+                          .IsRequired();
 
+                    entity.Property(e => e.Description)
+                          .HasMaxLength(500);
+
+                    entity.HasOne(e => e.Session)
+                          .WithMany()
+                          .HasForeignKey(e => e.SessionId)
+                          .OnDelete(DeleteBehavior.Cascade);
+                });
             });
             #endregion
         }
