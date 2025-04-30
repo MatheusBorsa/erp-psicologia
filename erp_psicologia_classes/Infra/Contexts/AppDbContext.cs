@@ -14,10 +14,8 @@ namespace erp_psicologia_classes.Infra.Contexts
         #region [DBSETS]
         public DbSet<Person> Peoples { get; set; }
         public DbSet<Patient> Patients { get; set; }
-        public DbSet<User> Users { get; set; }
-
         public DbSet<Psychologist> Psychologists { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Configuration> Configurations { get; set; }
