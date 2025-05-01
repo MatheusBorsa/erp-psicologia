@@ -10,7 +10,7 @@ namespace erp_psicologia_classes.Application.Services.PasswordHasher
 {
     public class PasswordHasherBcryipt : IPasswordHasher
     {
-
+        // testeaaaaaaaaaaaaaaaaaaaaaa
         public string Hash(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
