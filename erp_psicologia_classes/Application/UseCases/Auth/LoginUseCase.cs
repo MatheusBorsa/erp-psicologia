@@ -19,12 +19,10 @@ namespace erp_psicologia_classes.Application.UseCases.Auth
         {
             Hasher = hasher;
         }
-
         public LoginOutputDto Execute(LoginInputDto input)
         {
             Context.Psychologists.FirstOrDefault(
                 p => p.LicenseNumber == input.LicenseNumber && Hasher.VerifyPassword(p.Password,input.Password)
-
             );
             return new LoginOutputDto(true);
         }

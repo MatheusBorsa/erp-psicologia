@@ -1,16 +1,19 @@
-﻿using erp_psicologia_classes.Application.UseCases.Auth;
+﻿using erp_psicologia_classes.Application.Interfaces;
+using erp_psicologia_classes.Application.UseCases.Auth;
 using erp_psicologia_classes.Application.UseCases.Auth.Dtos;
 using erp_psicologia_classes.Infra.Contexts;
 using Microsoft.AspNetCore.Mvc;
-
+using erp_psicologia_classes.Domain.ValueObjects;
 namespace erp_psicologia.Controllers
 {
     public class LoginController : Controller
     {
         public AppDbContext Context { get; set; }
-        public LoginController(AppDbContext context)
+        public IPasswordHasher PasswordHasher { get; set; }
+        public LoginController(AppDbContext context, IPasswordHasher passwordHasher)
         {
             Context = context;
+            PasswordHasher = passwordHasher;
         }
 
         public IActionResult Index()
@@ -22,8 +25,8 @@ namespace erp_psicologia.Controllers
         {
             try
             {
-                LoginUseCase useCase= new LoginUseCase(Context);
-                LoginInputDto inputDto = new LoginInputDto(new erp_psicologia_classes.Domain.ValueObjects.LicenseNumber(licenseNumber), password);
+                LoginUseCase useCase= new LoginUseCase(Context, PasswordHasher);
+                LoginInputDto inputDto = new LoginInputDto(new LicenseNumber(licenseNumber), password);
 
                 LoginOutputDto outputDto = useCase.Execute(inputDto);
                 
