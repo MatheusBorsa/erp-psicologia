@@ -89,9 +89,14 @@ namespace erp_psicologia_classes.Infra.Contexts
                 });
 
                 entity.Property(e => e.Approach)
-                      .HasConversion<int>() // Confirma que ApproachType é salvo como int
+                      .HasConversion<int>()
                       .IsRequired();
+
+                entity.Property(e => e.Password)
+                      .IsRequired()
+                      .HasMaxLength(100); 
             });
+
             #endregion
             #region [SCHEDULE]
             modelBuilder.Entity<Schedule>(entity =>

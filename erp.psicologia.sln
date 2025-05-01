@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "erp_psicologia", "erp_psicologia\erp_psicologia.csproj", "{1B83E223-A288-4C91-9130-A2D2B53BB56F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "erp_psicologia_classes", "erp_psicologia_classes\erp_psicologia_classes.csproj", "{C7451451-4C4B-41C9-9D07-EB84A829B76F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "erp_psicologia_classes", "erp_psicologia_classes\erp_psicologia_classes.csproj", "{C7451451-4C4B-41C9-9D07-EB84A829B76F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9BEB0CFD-2ACF-42FF-8EBA-404F4F3AE447}"
 	ProjectSection(SolutionItems) = preProject

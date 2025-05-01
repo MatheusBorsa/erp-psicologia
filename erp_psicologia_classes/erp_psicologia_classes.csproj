@@ -8,12 +8,13 @@
 
   <ItemGroup>
     <Folder Include="Infra\Database\" />
-    <Folder Include="Infra\Database\Migrations\" />
-    <Folder Include="Presentation\Controllers\" />
+    <Folder Include="Presentation\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -1,0 +1,26 @@
+﻿@model erp_psicologia.Pages.Login.IndexModel
+@{
+    ViewData["Title"] = "Login";
+}
+<h2>Login</h2>
+
+<form method="post" asp-action="Login">
+    <div>
+        <label for="LicenseNumber">CRP:</label>
+        <input type="text" id="LicenseNumber" name="LicenseNumber" required />
+    </div>
+    <div>
+        <label for="Password">Senha:</label>
+        <input type="password" id="Password" name="password" required />
+    </div>
+    <div>
+        <button type="submit">Entrar</button>
+    </div>
+</form>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div style="color: red;">
+        <strong>@ViewBag.ErrorMessage</strong>
+    </div>
+}

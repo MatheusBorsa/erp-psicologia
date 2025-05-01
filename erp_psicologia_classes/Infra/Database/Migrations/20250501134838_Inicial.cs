@@ -72,7 +72,8 @@ namespace erp_psicologia_classes.Infra.Database.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PersonId = table.Column<int>(type: "integer", nullable: false),
                     LicenseNumber = table.Column<string>(type: "text", nullable: false),
-                    Approach = table.Column<int>(type: "integer", nullable: false)
+                    Approach = table.Column<int>(type: "integer", nullable: false),
+                    Password = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {

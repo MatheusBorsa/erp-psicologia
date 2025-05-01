@@ -12,7 +12,7 @@ using erp_psicologia_classes.Infra.Contexts;
 namespace erp_psicologia_classes.Infra.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250430005524_Inicial")]
+    [Migration("20250501134838_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -138,6 +138,11 @@ namespace erp_psicologia_classes.Infra.Database.Migrations
 
                     b.Property<int>("Approach")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<int>("PersonId")
                         .HasColumnType("integer");

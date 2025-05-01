@@ -15,17 +15,19 @@ namespace erp_psicologia_classes.Domain.Entities
         public Person Person { get; set; }
         public LicenseNumber LicenseNumber { get; set; }
         public ApproachType Approach { get; set; }
+        public string Password { get; set; }
 
         public Psychologist()
         {
         }
 
-        public Psychologist(int id, int personId, LicenseNumber licenseNumber, ApproachType approach)
+        public Psychologist(int id, int personId, LicenseNumber licenseNumber, ApproachType approach, string password)
         {
             Id = id;
             PersonId = personId;
             LicenseNumber = licenseNumber;
             Approach = approach;
+            Password = password;
         }
     }
 }
