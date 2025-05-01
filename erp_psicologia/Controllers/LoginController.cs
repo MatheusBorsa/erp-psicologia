@@ -15,7 +15,6 @@ namespace erp_psicologia.Controllers
             Context = context;
             PasswordHasher = passwordHasher;
         }
-
         public IActionResult Index()
         {
             return View();

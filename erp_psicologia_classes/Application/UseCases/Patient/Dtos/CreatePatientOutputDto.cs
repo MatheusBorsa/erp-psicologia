@@ -8,5 +8,14 @@ namespace erp_psicologia_classes.Application.UseCases.Patient.Dtos
 {
     public class CreatePatientOutputDto
     {
+        public string Error { get; set; }
+
+        public bool Created {  get; set; }
+
+        public CreatePatientOutputDto(bool created, string error = "")
+        {
+            Created = created;
+            Error = error;
+        }
     }
 }
