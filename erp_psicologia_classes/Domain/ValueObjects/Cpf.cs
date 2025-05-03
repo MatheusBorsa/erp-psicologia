@@ -77,5 +77,9 @@ namespace erp_psicologia_classes.Domain.ValueObjects
 
             return numbers[10] == secondDigit;
         }
+        public override string ToString()
+        {
+            return Value;
+        }
     }
 }

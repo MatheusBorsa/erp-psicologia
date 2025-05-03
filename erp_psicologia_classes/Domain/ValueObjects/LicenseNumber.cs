@@ -27,6 +27,10 @@ namespace erp_psicologia_classes.Domain.ValueObjects
 
             }
         }
+        public override string ToString()
+        {
+            return Value;
+        }
 
     }
 }

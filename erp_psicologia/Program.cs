@@ -1,6 +1,7 @@
 using erp_psicologia_classes.Application.Interfaces;
 using erp_psicologia_classes.Application.Services.PasswordHasher;
 using erp_psicologia_classes.Infra.Contexts;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -12,6 +13,14 @@ builder.Services.AddControllersWithViews();
 // configuration database
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Index";
+        options.LogoutPath = "/Login/Logout"; 
+        options.AccessDeniedPath = "/Home/AccessDenied";
+    });
 
 builder.Services.AddScoped<IPasswordHasher, PasswordHasherBcryipt>();
 
@@ -30,6 +39,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
@@ -38,3 +48,4 @@ app.MapControllerRoute(
     pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
+

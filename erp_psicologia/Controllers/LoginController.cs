@@ -4,6 +4,9 @@ using erp_psicologia_classes.Application.UseCases.Auth.Dtos;
 using erp_psicologia_classes.Infra.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using erp_psicologia_classes.Domain.ValueObjects;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 namespace erp_psicologia.Controllers
 {
     public class LoginController : Controller
@@ -20,19 +23,20 @@ namespace erp_psicologia.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(string licenseNumber, string password)
+        public async Task<IActionResult> Login(string licenseNumber, string password)
         {
             try
             {
-                LoginUseCase useCase= new LoginUseCase(Context, PasswordHasher);
+                LoginUseCase useCase = new LoginUseCase(Context, PasswordHasher);
                 LoginInputDto inputDto = new LoginInputDto(new LicenseNumber(licenseNumber), password);
-
                 LoginOutputDto outputDto = useCase.Execute(inputDto);
-                
-                if(!outputDto.Logged)
+
+                if (!outputDto.Logged)
                 {
-                    throw new Exception(outputDto.Error);                   
+                    throw new Exception(outputDto.Error);
                 }
+
+                await SetCookies(outputDto);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -42,5 +46,22 @@ namespace erp_psicologia.Controllers
                 return View("Index");
             }
         }
+
+        private async Task SetCookies(LoginOutputDto outputDto)
+        {
+            List<Claim> claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, outputDto.Psychologist.LicenseNumber.ToString()),
+                    new Claim("LicenseNumber", outputDto.Psychologist.LicenseNumber.ToString()),
+                    new Claim("UserName",outputDto.Psychologist.Person.Name.ToString()),
+                    new Claim("Cpf",outputDto.Psychologist.Person.Cpf.ToString()),
+                };
+
+            ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+        }
+
+
     }
 }

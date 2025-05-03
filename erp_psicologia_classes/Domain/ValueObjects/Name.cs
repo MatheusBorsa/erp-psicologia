@@ -23,5 +23,9 @@ namespace erp_psicologia_classes.Domain.ValueObjects
                 throw new ArgumentNullException("value");
             }
         }
+        public override string ToString()
+        {
+            return Value;
+        }
     }
 }

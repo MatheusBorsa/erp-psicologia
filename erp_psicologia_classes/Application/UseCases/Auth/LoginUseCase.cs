@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace erp_psicologia_classes.Application.UseCases.Auth
 {
@@ -23,14 +24,19 @@ namespace erp_psicologia_classes.Application.UseCases.Auth
         public LoginOutputDto Execute(LoginInputDto input)
         {
             Psychologist? psychologist = null;
-            psychologist = Context.Psychologists.FirstOrDefault(
+            psychologist = Context.Psychologists
+                .Include(p => p.Person)
+                .FirstOrDefault(
                 p => p.LicenseNumber.Value == input.LicenseNumber.Value
             );
 
             if (psychologist == null || !Hasher.VerifyPassword(input.Password, psychologist.Password)) {
                 return new LoginOutputDto(false, "Usuário ou senha não encontrados");
             }
-            return new LoginOutputDto(true);
+
+            LoginOutputDto outputDto = new LoginOutputDto(true);
+            outputDto.Psychologist = psychologist;
+            return outputDto;
         }
     }
 }
