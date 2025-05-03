@@ -12,13 +12,19 @@ namespace erp_psicologia_classes.Domain.ValueObjects
         public string Value;
         public LicenseNumber(string value)
         {
+            ValidateLicenseNumber(value);
             this.Value = value;
         }
         private void ValidateLicenseNumber(string value)
         {
             if (string.IsNullOrEmpty(value))
             {
-                throw new ArgumentNullException("Licença inválida");
+                throw new ArgumentException("Licença inválida");
+            }
+            if(!int.TryParse(value,out _))
+            {
+                throw new ArgumentException("Licença inválida");
+
             }
         }
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace erp_psicologia_classes.Application.UseCases.Psychologist
+namespace erp_psicologia_classes.Application.UseCases.Patients.Dtos
 {
-    internal class SearchPsychologistUseCase
+    public class UpdatePatientOutputDto
     {
     }
 }

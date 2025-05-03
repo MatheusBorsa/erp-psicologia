@@ -1,6 +1,7 @@
 ﻿using erp_psicologia_classes.Application.Dtos;
 using erp_psicologia_classes.Application.Interfaces;
 using erp_psicologia_classes.Application.UseCases.Auth.Dtos;
+using erp_psicologia_classes.Domain.Entities;
 using erp_psicologia_classes.Domain.Interfaces;
 using erp_psicologia_classes.Domain.ValueObjects;
 using erp_psicologia_classes.Infra.Contexts;
@@ -21,9 +22,14 @@ namespace erp_psicologia_classes.Application.UseCases.Auth
         }
         public LoginOutputDto Execute(LoginInputDto input)
         {
-            Context.Psychologists.FirstOrDefault(
-                p => p.LicenseNumber == input.LicenseNumber && Hasher.VerifyPassword(p.Password,input.Password)
+            Psychologist? psychologist = null;
+            psychologist = Context.Psychologists.FirstOrDefault(
+                p => p.LicenseNumber.Value == input.LicenseNumber.Value
             );
+
+            if (psychologist == null || !Hasher.VerifyPassword(input.Password, psychologist.Password)) {
+                return new LoginOutputDto(false, "Usuário ou senha não encontrados");
+            }
             return new LoginOutputDto(true);
         }
     }

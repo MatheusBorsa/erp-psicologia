@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace erp_psicologia_classes.Application.UseCases.Psychologist
+namespace erp_psicologia_classes.Application.UseCases.Psychologists
 {
-    internal class CreatePsychologistUseCase
+    internal class UpdatePsychologistsUseCase
     {
     }
 }
