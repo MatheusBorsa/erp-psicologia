@@ -21,9 +21,9 @@ namespace erp_psicologia_classes.Application.UseCases.Auth
 
         public RegisterOutputDto Execute(RegisterInputDto input)
         {
-            var email = new Email(input.Email;
+            Email email = new Email(input.Email);
 
-            var existingPsychologist = Context.Psychologists
+            Psychologist? existingPsychologist = Context.Psychologists
                 .Include(p => p.Person)
                 .FirstOrDefault(p => p.LicenseNumber.Value == input.LicenseNumber.Value);
 
@@ -41,7 +41,7 @@ namespace erp_psicologia_classes.Application.UseCases.Auth
             }
 
             // Create new psychologist
-            var psychologist = new Psychologist
+            Psychologist psychologist = new Psychologist
             {
                 LicenseNumber = input.LicenseNumber,
                 Password = _hasher.Hash(input.Password),
