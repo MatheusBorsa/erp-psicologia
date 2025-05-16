@@ -8,7 +8,7 @@ namespace erp_psicologia_classes.Domain.Entities
 {
     public class Payment
     {
-        public int Id { get; set; } // necessário para EF identificar como chave
+        public int Id { get; set; }
         public decimal Value { get; private set; }
         public decimal Amount_Paid { get; private set; }
         public bool Paid { get; set; }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace erp_psicologia_classes.Application.UseCases.Schedule
+namespace erp_psicologia_classes.Application.UseCases.Schedules
 {
-    internal class CreateScheduleUseCase
+    internal class UpdateScheduleUseCase
     {
     }
 }

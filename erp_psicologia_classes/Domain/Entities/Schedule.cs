@@ -32,5 +32,14 @@ namespace erp_psicologia_classes.Domain.Entities
             PsychologistId = psychologistId;
             PatientId = patientId;
         }
+
+        public Schedule(DateTime date, TimeSpan start, TimeSpan end, int psychologistId, int patientId)
+        {
+            Date = date;
+            Start = start;
+            End = end;
+            PsychologistId = psychologistId;
+            PatientId = patientId;
+        }
     }
 }
