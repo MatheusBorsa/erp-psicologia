@@ -112,6 +112,8 @@ namespace erp_psicologia_classes.Infra.Contexts
                 entity.Property(e => e.End)
                       .IsRequired();
 
+                entity.Property(e => e.DeletedAt).IsRequired(false);
+
                 entity.HasOne(e => e.Psychologist)
                       .WithMany()
                       .HasForeignKey(e => e.PsychologistId)
@@ -121,6 +123,7 @@ namespace erp_psicologia_classes.Infra.Contexts
                       .WithMany()
                       .HasForeignKey(e => e.PatientId)
                       .OnDelete(DeleteBehavior.Restrict);
+
             });
             #endregion
             #region [SESSION]

@@ -1,4 +1,4 @@
-﻿using erp_psicologia_classes.Application.UseCases.Schedules.Dtos;
+﻿using erp_psicologia_classes.Application.UseCases.Schedules.Dtos.VerifyAvaliableTime;
 using erp_psicologia_classes.Domain.Entities;
 using erp_psicologia_classes.Domain.Interfaces;
 using erp_psicologia_classes.Infra.Contexts;
@@ -10,17 +10,16 @@ using System.Threading.Tasks;
 
 namespace erp_psicologia_classes.Application.UseCases.Schedules
 {
-    public class VerifyAvaliableTimeUseCase : IUseCase<VerifyAvaliableTimeInputDto, VerifyAvaliableTimeOutputDto>
+    public class VerifyAvaliableTimeUseCase : BaseUseCase, IUseCase<VerifyAvaliableTimeInputDto, VerifyAvaliableTimeOutputDto>
     {
-        private AppDbContext DbContext { get; set; }
-        public VerifyAvaliableTimeUseCase(AppDbContext dbContext)
+        public VerifyAvaliableTimeUseCase(AppDbContext context) : base(context)
         {
-            DbContext = dbContext;
         }
+
         public VerifyAvaliableTimeOutputDto Execute(VerifyAvaliableTimeInputDto input)
         {
             Schedule? schedule = null;
-            schedule = DbContext.Schedules.FirstOrDefault(
+            schedule = Context.Schedules.FirstOrDefault(
                 x => 
                     x.Start == input.Start &&
                     x.End == input.End &&

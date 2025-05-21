@@ -9,7 +9,7 @@ namespace erp_psicologia_classes.Application.UseCases
 {
     public abstract class BaseUseCase
     {
-        public AppDbContext Context { get; set; }
+        protected AppDbContext Context { get; set; }
 
         protected BaseUseCase(AppDbContext context)
         {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace erp_psicologia_classes.Application.UseCases.Schedules.Dtos
+namespace erp_psicologia_classes.Application.UseCases.Schedules.Dtos.SearchSchedules
 {
     public class SearchSchedulesOutputDto
     {

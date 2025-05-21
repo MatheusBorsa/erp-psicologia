@@ -18,6 +18,8 @@ namespace erp_psicologia_classes.Domain.Entities
 
         public int PatientId { get; set; }
         public Patient Patient { get; set; }
+        public virtual Session Session { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public Schedule()
         {

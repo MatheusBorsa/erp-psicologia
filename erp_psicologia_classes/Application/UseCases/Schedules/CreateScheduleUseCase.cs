@@ -1,4 +1,5 @@
-﻿using erp_psicologia_classes.Application.UseCases.Schedules.Dtos;
+﻿using erp_psicologia_classes.Application.UseCases.Schedules.Dtos.CreateSchedule;
+using erp_psicologia_classes.Application.UseCases.Schedules.Dtos.VerifyAvaliableTime;
 using erp_psicologia_classes.Domain.Entities;
 using erp_psicologia_classes.Domain.Interfaces;
 using erp_psicologia_classes.Infra.Contexts;
@@ -10,15 +11,14 @@ using System.Threading.Tasks;
 
 namespace erp_psicologia_classes.Application.UseCases.Schedules
 {
-    public class CreateScheduleUseCase : IUseCase<CreateScheduleInputDto, CreateScheduleOutputDto>
+    public class CreateScheduleUseCase : BaseUseCase, IUseCase<CreateScheduleInputDto, CreateScheduleOutputDto>
     {
-        private AppDbContext DbContext { get; set; }
         private VerifyAvaliableTimeUseCase VerifyAvaliableTimeUseCase { get; set; }
-        public CreateScheduleUseCase(AppDbContext dbContext, VerifyAvaliableTimeUseCase verifyUseCase)
+        public CreateScheduleUseCase(AppDbContext context, VerifyAvaliableTimeUseCase verifyUseCase) : base(context)
         {
-            DbContext = dbContext;
             VerifyAvaliableTimeUseCase = verifyUseCase;
         }
+
         public CreateScheduleOutputDto Execute(CreateScheduleInputDto input)
         {
             VerifyAvaliableTimeInputDto verifyDto = new VerifyAvaliableTimeInputDto(
@@ -40,7 +40,7 @@ namespace erp_psicologia_classes.Application.UseCases.Schedules
             );
             try
             {
-                DbContext.SaveChanges();
+                Context.SaveChanges();
                 return new CreateScheduleOutputDto(true, schedule, "Cadastrado com sucesso");
             }
             catch (Exception ex)
