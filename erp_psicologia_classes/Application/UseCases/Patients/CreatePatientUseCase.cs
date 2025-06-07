@@ -10,13 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 namespace erp_psicologia_classes.Application.UseCases.Patients
 {
-    public class CreatePatientUseCase : IUseCase<CreatePatientInputDto, CreatePatientOutputDto>
+    public class CreatePatientUseCase : BaseUseCase,IUseCase<CreatePatientInputDto, CreatePatientOutputDto>
     {
-        private AppDbContext DbContext { get; set; }
-        public CreatePatientUseCase(AppDbContext dbContext) 
+        public CreatePatientUseCase(AppDbContext context) : base(context)
         {
-            DbContext = dbContext;
         }
+
         public CreatePatientOutputDto Execute(CreatePatientInputDto dto)
         {
             try
@@ -30,23 +29,23 @@ namespace erp_psicologia_classes.Application.UseCases.Patients
                     dto.BirthDate
                 );
 
-                DbContext.Database.BeginTransaction();
+                Context.Database.BeginTransaction();
 
-                DbContext.Peoples.Add(person);
-                DbContext.SaveChanges();
+                Context.Peoples.Add(person);
+                Context.SaveChanges();
 
                 int personId = person.Id;
 
                 Patient patient = new Patient(personId);
-                DbContext.Peoples.Add(person);
-                DbContext.SaveChanges();
-                DbContext.Database.CommitTransaction();
+                Context.Peoples.Add(person);
+                Context.SaveChanges();
+                Context.Database.CommitTransaction();
 
                 return new CreatePatientOutputDto(true, "Paciente cadastrado com sucesso");
             }
             catch (Exception ex)
             {
-                DbContext.Database.RollbackTransaction();
+                Context.Database.RollbackTransaction();
                 return new CreatePatientOutputDto(false, ex.Message);
             }
         }

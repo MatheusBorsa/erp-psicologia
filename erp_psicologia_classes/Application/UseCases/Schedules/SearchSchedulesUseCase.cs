@@ -45,6 +45,7 @@ namespace erp_psicologia_classes.Application.UseCases.Schedules
             {
                 query = query.Where(x => x.Date <= input.EndDate.Value.Date);
             }
+
             query = query.Where(x => x.DeletedAt == null);
 
             query.Include(x => x.Session);

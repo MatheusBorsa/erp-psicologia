@@ -21,25 +21,26 @@ namespace erp_psicologia_classes.Application.UseCases.Schedules
 
         public CreateScheduleOutputDto Execute(CreateScheduleInputDto input)
         {
-            VerifyAvaliableTimeInputDto verifyDto = new VerifyAvaliableTimeInputDto(
-                input.Date,
-                input.Start,
-                input.End
-            );
-            bool avaliable = VerifyAvaliableTimeUseCase.Execute( verifyDto ).Avaliable;
-            if (!avaliable)
-            {
-                return new CreateScheduleOutputDto(false,"Paciente não encontrado");
-            }
-            Schedule schedule = new Schedule(
-                input.Date,
-                input.Start,
-                input.End,
-                input.PsychologistId,
-                input.PatientId
-            );
             try
             {
+                VerifyAvaliableTimeInputDto verifyDto = new VerifyAvaliableTimeInputDto(
+                    input.Date,
+                    input.Start,
+                    input.End
+                );
+                if (VerifyAvaliableTimeUseCase.Execute(verifyDto).Avaliable)
+                {
+                    return new CreateScheduleOutputDto(false,"Paciente não encontrado");
+                }
+
+                Schedule schedule = new Schedule(
+                    input.Date,
+                    input.Start,
+                    input.End,
+                    input.PsychologistId,
+                    input.PatientId
+                );
+                Context.Add(schedule);
                 Context.SaveChanges();
                 return new CreateScheduleOutputDto(true, schedule, "Cadastrado com sucesso");
             }

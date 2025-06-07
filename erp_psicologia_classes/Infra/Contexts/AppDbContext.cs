@@ -134,8 +134,7 @@ namespace erp_psicologia_classes.Infra.Contexts
                 entity.Property(e => e.Description)
                       .HasMaxLength(500);
 
-                entity.Property(e => e.Feedback)
-                      .IsRequired();
+                entity.Property(e => e.Feedback);
 
                 entity.HasOne(e => e.Psychologist)
                       .WithMany()

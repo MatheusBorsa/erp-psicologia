@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace erp_psicologia_classes.Application.UseCases.Session
+namespace erp_psicologia_classes.Application.UseCases.Sessions
 {
-    internal class UpdateSessionUseCase
+    internal class SearchSessionUseCase
     {
     }
 }

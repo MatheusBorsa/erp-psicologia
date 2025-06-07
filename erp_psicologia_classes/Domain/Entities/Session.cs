@@ -36,5 +36,12 @@ namespace erp_psicologia_classes.Domain.Entities
             ScheduleId = scheduleId;
             Schedule = schedule;
         }
+
+        public Session(int psychologistId, int patientId, int scheduleId)
+        {
+            PsychologistId = psychologistId;
+            PatientId = patientId;
+            ScheduleId = scheduleId;
+        }
     }
 }
