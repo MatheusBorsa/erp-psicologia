@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace erp_psicologia_classes.Application.UseCases.Sessions
 {
-    internal class SearchSessionUseCase
+    public class SearchSessionUseCase
     {
     }
 }

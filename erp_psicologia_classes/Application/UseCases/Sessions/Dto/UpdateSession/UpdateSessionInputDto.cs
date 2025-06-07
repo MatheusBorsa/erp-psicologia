@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace erp_psicologia_classes.Application.UseCases.Sessions
+namespace erp_psicologia_classes.Application.UseCases.Sessions.Dto.UpdateSession
 {
-    public class UpdateSessionUseCase
+    public class UpdateSessionInputDto
     {
     }
 }

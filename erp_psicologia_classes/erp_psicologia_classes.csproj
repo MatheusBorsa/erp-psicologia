@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\UseCases\Sessions\Dto\UpdateSession\" />
     <Folder Include="Application\UseCases\Sessions\Dto\SearchSession\" />
     <Folder Include="Infra\Database\" />
     <Folder Include="Presentation\" />
